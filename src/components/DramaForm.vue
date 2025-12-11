@@ -247,4 +247,16 @@
         box-shadow: inset 0px -2px 0px #E47DAB;
         cursor: pointer;
     }
+
+    /* Screens under 800px*/
+    @media screen and (max-width: 800px) {
+        h3 { margin-left: 10vw; }
+        form { width: 70vw; }
+    }
+
+    /* Screens under 640px*/
+    @media screen and (max-width: 640px) {
+        form { flex-direction: column; }
+        .tagsList { flex-direction: column; margin-top: 20px; }
+    }
 </style>

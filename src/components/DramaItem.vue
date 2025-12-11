@@ -38,12 +38,13 @@
 
     ul {
         display: flex;
-        flex: wrap;
-        padding: 20px 0px 0px 0px;
+        flex-wrap: wrap;
+        padding: 0px;
         list-style-type: none;
     }
 
     li {
+        margin-top: 10px;
         padding: 5px 10px;
         border-radius: 15px;
         font-size: 0.9rem;
