@@ -1,7 +1,10 @@
 <template>
-    <h2>Drama serier</h2>
     <DramaForm  @refresh-list="getDramas"/>
-    <DramaItem v-for="drama in dramas" :key="drama.drama_id" :drama="drama" @delete-drama="deleteDrama"/>
+    <button id="formBtn">Lägg till drama</button>
+    <section>
+        <h2>Drama serier</h2>
+        <DramaItem v-for="drama in dramas" :key="drama.drama_id" :drama="drama" @delete-drama="deleteDrama"/>
+    </section>
 </template>
 
 <script setup>
@@ -45,5 +48,14 @@
 </script>
 
 <style scoped>
+    #formBtn {
+        display: block;
+        background-color: #ECE4D4;
+        margin-left: auto;
+        margin-right: 10px;
+        border: none;
+        border-radius: 0px 0px 10px 10px;
+        box-shadow: inset 0px -2px 0px #E47DAB;
+    }
     
 </style>

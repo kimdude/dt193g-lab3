@@ -1,44 +1,55 @@
 <template>
-    <!-- Formulär för att lägga till drama-->
-    <form @submit.prevent="addDrama">
-        <label for="addDrama">Titel: </label>
-        <br>
-        <input v-model="titleInp" type="text" name="addDrama" id="addDrama">
-        <br>
-        <div id="numContainer">
-            <div>
-                <label for="year">Startade: </label>
+    <section>
+        <h3>Lägg till drama</h3>
+        <!-- Formulär för att lägga till drama-->
+        <form @submit.prevent="addDrama">
+            <div class="inputContainer">
+                <label for="addDrama">Titel: </label>
                 <br>
-                <input v-model.number="yearInp" type="number" name="year" id="year" min="1900" max="2027" step="1">
-            </div>
-            <div>
-                <label for="episodes">Avsnitt: </label>
+                <input v-model="titleInp" type="text" name="addDrama" id="addDrama">
                 <br>
-                <input v-model.number="episodesInp" type="number" name="episodes" id="episodes" min="1" max="100" step="1">
+                <div id="numContainer">
+                    <div>
+                        <label for="year">Startade: </label>
+                        <br>
+                        <input v-model.number="yearInp" type="number" name="year" id="year" min="1900" max="2027" step="1">
+                    </div>
+                    <div>
+                        <label for="episodes">Avsnitt: </label>
+                        <br>
+                        <input v-model.number="episodesInp" type="number" name="episodes" id="episodes" min="1" max="100" step="1">
+                    </div>
+                </div>
+                <input v-model="webtoonInp" type="checkbox" name="webtoon" id="webtoon"> 
+                <label for="webtoon">Baserat på webtoon</label>
+                <br>
+                <!-- Select som loopar igenom genrer -->
+                <select v-model="genreInp" name="genre">
+                    <option disabled value="">Genrer</option>
+                    <option v-for="genre in genres" v-bind:value="genre.genre_id">{{ genre.genre_name }}</option>
+                </select>
             </div>
-        </div>
-        <input v-model="webtoonInp" type="checkbox" name="webtoon" id="webtoon"> 
-        <label for="webtoon">Baserat på webtoon</label>
-        <br>
-        <!-- Select som loopar igenom genrer -->
-        <select v-model="genreInp" name="genre">
-            <option disabled value="">Genrer</option>
-            <option v-for="genre in genres" v-bind:value="genre.genre_id">{{ genre.genre_name }}</option>
-        </select>
-        <div class="tagsList">
-            <!-- Loopar igenom taggar  -->
-            <div v-for="(tag) in firstTags">
-                <input v-model="tagsInp" type="checkbox" v-bind:id="tag.tag_name" name="tags" v-bind:value="tag.tag_id">
-                <label v-bind:for="tag.tag_name"> {{ tag.tag_name }}</label>
+            <div class="tagsList">
+                <div>
+                    <!-- Loopar igenom taggar  -->
+                    <div v-for="tag in firstTags">
+                        <input v-model="tagsInp" type="checkbox" v-bind:id="tag.tag_name" name="tags" v-bind:value="tag.tag_id">
+                        <label v-bind:for="tag.tag_name"> {{ tag.tag_name }}</label>
+                    </div>
+                </div>
+                <div>
+                    <div v-for="tag in secondTags">
+                        <input v-model="tagsInp" type="checkbox" v-bind:id="tag.tag_name" name="tags" v-bind:value="tag.tag_id">
+                        <label v-bind:for="tag.tag_name"> {{ tag.tag_name }}</label>
+                    </div>
+                </div>
             </div>
-            <div v-for="(tag) in secondTags">
-                <input v-model="tagsInp" type="checkbox" v-bind:id="tag.tag_name" name="tags" v-bind:value="tag.tag_id">
-                <label v-bind:for="tag.tag_name"> {{ tag.tag_name }}</label>
+            <div class="submitContainer">
+                <input type="submit" value="Lägg till" id="submitBtn">
             </div>
-        </div>
-        <input type="submit" value="Lägg till">
-    </form>
-    <p id="errorMessage" v-if="errorMessage">{{ errorMessage }}</p>
+        </form>
+        <p id="errorMessage" v-if="errorMessage">{{ errorMessage }}</p>
+    </section>
 </template>
 
 <script setup>
@@ -110,7 +121,7 @@
         
         if(titleInp.value === "") errorArr.push("titel");
         if(yearInp.value === null || yearInp.value > 2027 || yearInp.value < 1950) errorArr.push("årtal 1950-2027");
-        if(episodesInp.value === null) errorArr.push("antal avsnitt");
+        if(episodesInp.value === null || episodesInp.value === 0) errorArr.push("antal avsnitt");
         if(genreInp.value === "") errorArr.push("genrer");
 
         if(errorArr.length > 0) {
@@ -144,6 +155,13 @@
 
             if(response.ok) {
                 emits("refreshList");
+
+                titleInp.value = "";
+                yearInp.value = null;
+                episodesInp.value = null;
+                webtoonInp.value = false;
+                genreInp.value = "";
+                tagsInp.value = [];
             }
             
         } catch(error) {
@@ -153,3 +171,38 @@
     }
 
 </script>
+
+<style scoped>
+    section {
+        border-bottom: solid 4px #ECE4D4;
+        background-color: #e2a93f;
+    }
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .inputContainer {
+        flex: 40%;
+    }
+
+    .tagsList {
+        display: flex;
+        flex: 40%;
+    }
+
+    .submitContainer {
+        flex: 30%;
+    }
+
+    #submitBtn {        
+        padding: 5px 10px;
+        background-color: #ECE4D4;
+        border: none;
+        border-radius: 10px;
+        box-shadow: inset 0px -2px 0px #E47DAB;
+        cursor: pointer;
+    }
+</style>
