@@ -1,10 +1,12 @@
 <template>
     <article>
-        <h3>{{ drama.title }}</h3>
-        <p><time v-bind:datetime=drama.release_year>{{ drama.release_year }}</time>, {{ drama.genres }}</p>
-        <ul>
-            <li v-for="tag in tags">{{ tag }}</li>
-        </ul>
+        <div>
+            <h3>{{ drama.title }}</h3>
+            <p><time v-bind:datetime=drama.release_year>{{ drama.release_year }}</time>, {{ drama.genres }}</p>
+            <ul>
+                <li v-for="tag in tags">{{ tag }}</li>
+            </ul>
+        </div>
         <button @click="$emit('deleteDrama', drama.drama_id)">
             <span class="span1"></span>
             <span class="span2"></span>
@@ -26,16 +28,12 @@
 
 <style lang="css" scoped>
     article {
+        display: flex;
         background-color: #ECE4D4;
         padding: 10px 2vw;
         margin: 20px 0px;
         border-left: solid 4px #E47DAB;
         border-radius: 10px;
-    }
-
-    button {
-        background-color: transparent;
-        border: none;
     }
 
     ul {
@@ -54,6 +52,14 @@
 
     li:not(:first-of-type) {
         margin-left: 15px;
+    }
+
+    button {
+        margin-left: auto;
+        margin-top: 2vw;
+        height: fit-content;
+        background-color: transparent;
+        border: none;
     }
 
     span {
