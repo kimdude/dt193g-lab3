@@ -3,21 +3,30 @@
         <label for="addDrama">Titel: </label>
         <br>
         <input type="text" name="addDrama" id="addDrama" v-model="title">
+        <br>
         <label for="year">Startade: </label>
+        <br>
         <input type="number" name="year" id="year" min="1900" max="2027" step="1">
+        <br>
         <label for="episodes">Avsnitt: </label>
+        <br>
         <input type="number" name="episodes" id="episodes" min="1" max="100" step="1">
-        <input type="checkbox" name="webtoon" id="webtoon" value="yes">
+        <input type="checkbox" name="webtoon" id="webtoon" value="yes"> 
         <label for="webtoon">Baserat på webtoon</label>
         <br>
-        <!-- LÄS UT GENRER OCH TAGGAR FRÅN API:ET SEDAN-->
         <select name="genre">
-            <option value="1">Thriller</option>
+            <option v-for="genre in genres" v-bind:value="genre.genre_id">{{ genre.genre_name }}</option>
         </select>
-        <div>
-            <input type="checkbox" id="apocolypse" name="tags" value="1">
-            <label for="apocolypse">Apokalyps</label>
-            <br>
+        <div class="tagsList">
+            <!-- Loopar igenom taggar och delar i två för design -->
+            <div v-for="(tag,i) in tags">
+                <input type="checkbox" v-if="i <= tags.length /2 " v-bind:id="tag.tag_name" name="tags" v-bind:value="tag.tag_id">
+                <label v-if="i < tags.length /2 " v-bind:for="tag.tag_name"> {{ tag.tag_name }}</label>
+            </div>
+            <div v-for="(tag,i) in tags">
+                <input type="checkbox" v-if="i > tags.length /2 " v-bind:id="tag.tag_name" name="tags" v-bind:value="tag.tag_id">
+                <label v-if="i > tags.length /2 " v-bind:for="tag.tag_name"> {{ tag.tag_name }}</label>
+            </div>
         </div>
         <input type="submit" value="Lägg till">
     </form>
@@ -46,7 +55,7 @@
 
             if(response.ok) {
                 const data = await response.json();
-                genres.value = data;
+                genres.value = data.sort((a,b) => a.genre_name.localeCompare(b.genre_name));;
             }
 
         } catch(error) {
@@ -61,7 +70,7 @@
 
             if(response.ok) {
                 const data = await response.json();
-                tags.value = data;
+                tags.value = data.sort((a,b) => a.tag_name.localeCompare(b.tag_name));
             }
 
         } catch(error) {
@@ -69,5 +78,9 @@
         }
     }
 
+    //Lägger till drama
+    const addDrama = async () => {
+
+    }
 
 </script>
