@@ -1,6 +1,6 @@
 <template>
     <h2>Drama serier</h2>
-    <DramaForm />
+    <DramaForm  @refresh-list="getDramas"/>
     <DramaItem v-for="drama in dramas" :key="drama.drama_id" :drama="drama" @delete-drama="deleteDrama"/>
 </template>
 
@@ -24,7 +24,7 @@
                 dramas.value = data;
             }
         } catch(error) {
-            console.log("There was an error: " + error);
+            console.log("Ett gel uppstod: " + error);
         }
     }
 
@@ -38,7 +38,7 @@
                 getDramas();
             }
         } catch(error) {
-            console.log("There was an error: " + error);
+            console.log("Ett gel uppstod: " + error);
         }
     }
 
