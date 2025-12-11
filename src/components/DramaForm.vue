@@ -30,6 +30,7 @@
                 </select>
             </div>
             <div class="tagsList">
+                <p>Taggar: </p>
                 <div>
                     <!-- Loopar igenom taggar  -->
                     <div v-for="tag in firstTags">
@@ -178,27 +179,68 @@
         background-color: #e2a93f;
     }
 
+    h3 {
+        margin-left: 20vw;
+        margin-bottom: 30px;
+    }
+
     form {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        justify-self: center;
+        width: 50vw;
     }
 
     .inputContainer {
         flex: 40%;
     }
 
+    input {
+        padding: 5px 10px;
+        border: none;
+        border-left: solid 3px #E47DAB;
+        border-radius: 5px;
+    }
+
+    select {
+        margin-top: 10px;
+        padding: 5px 10px;
+        border-left: solid 3px #E47DAB;
+        border-radius: 5px;
+    }
+
+    #numContainer {
+        display: flex;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    #numContainer > div:last-of-type {
+        margin-left: 10px;
+    }
+
     .tagsList {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
         flex: 40%;
+    }
+
+    .tagsList > p {
+        margin-top: 0px;
+        flex: 90%;
     }
 
     .submitContainer {
         flex: 30%;
+        margin-top: 20px;
     }
 
     #submitBtn {        
-        padding: 5px 10px;
+        display: block;
+        margin: 20px auto;
+        padding: 10px 15px;
         background-color: #ECE4D4;
         border: none;
         border-radius: 10px;
