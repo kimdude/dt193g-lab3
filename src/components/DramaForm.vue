@@ -174,6 +174,7 @@
 </script>
 
 <style scoped>
+    /* Layout */
     section {
         border-bottom: solid 4px #ECE4D4;
         background-color: #e2a93f;
@@ -196,6 +197,22 @@
         flex: 40%;
     }
 
+    #numContainer {
+        display: flex;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    #numContainer > div:last-of-type {
+        margin-left: 10px;
+    }
+
+    .submitContainer {
+        flex: 30%;
+        margin-top: 20px;
+    }
+
+    /* Inputfält */
     input {
         padding: 5px 10px;
         border: none;
@@ -210,16 +227,6 @@
         border-radius: 5px;
     }
 
-    #numContainer {
-        display: flex;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    #numContainer > div:last-of-type {
-        margin-left: 10px;
-    }
-
     .tagsList {
         display: flex;
         flex-wrap: wrap;
@@ -232,11 +239,6 @@
         flex: 90%;
     }
 
-    .submitContainer {
-        flex: 30%;
-        margin-top: 20px;
-    }
-
     #submitBtn {        
         display: block;
         margin: 20px auto;
@@ -246,6 +248,12 @@
         border-radius: 10px;
         box-shadow: inset 0px -2px 0px #E47DAB;
         cursor: pointer;
+    }
+
+    #errorMessage {
+        text-align: center;
+        font-weight: 600;
+        color:#9e0000;
     }
 
     /* Screens under 800px*/
