@@ -1,10 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+
 body {
   margin: 0px;
   background-color: #9FC670;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 section {
   padding: 20px 2vw;
+}
+
+h1 {
+  font-family: "Limelight", cursive;
+  color: #ECE4D4;
 }
 
 button {
