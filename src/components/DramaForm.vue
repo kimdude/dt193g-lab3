@@ -18,14 +18,14 @@
             <option v-for="genre in genres" v-bind:value="genre.genre_id">{{ genre.genre_name }}</option>
         </select>
         <div class="tagsList">
-            <!-- Loopar igenom taggar och delar i två för design -->
-            <div v-for="(tag,i) in tags">
-                <input type="checkbox" v-if="i <= tags.length /2 " v-bind:id="tag.tag_name" name="tags" v-bind:value="tag.tag_id">
-                <label v-if="i < tags.length /2 " v-bind:for="tag.tag_name"> {{ tag.tag_name }}</label>
+            <!-- Loopar igenom taggar  -->
+            <div v-for="(tag) in firstTags">
+                <input type="checkbox" v-bind:id="tag.tag_name" name="tags" v-bind:value="tag.tag_id">
+                <label v-bind:for="tag.tag_name"> {{ tag.tag_name }}</label>
             </div>
-            <div v-for="(tag,i) in tags">
-                <input type="checkbox" v-if="i > tags.length /2 " v-bind:id="tag.tag_name" name="tags" v-bind:value="tag.tag_id">
-                <label v-if="i > tags.length /2 " v-bind:for="tag.tag_name"> {{ tag.tag_name }}</label>
+            <div v-for="(tag) in secondTags">
+                <input type="checkbox" v-bind:id="tag.tag_name" name="tags" v-bind:value="tag.tag_id">
+                <label v-bind:for="tag.tag_name"> {{ tag.tag_name }}</label>
             </div>
         </div>
         <input type="submit" value="Lägg till">
@@ -40,7 +40,8 @@
     const errorMessage = ref("");
 
     const genres = ref([]);
-    const tags = ref([])
+    const firstTags = ref([]);
+    const secondTags = ref([]);
 
     //Triggar funktioner när komponenten körs
     onMounted(() => {
@@ -69,8 +70,16 @@
             const response = await fetch("https://dt193g-lab2.onrender.com/tags");
 
             if(response.ok) {
-                const data = await response.json();
-                tags.value = data.sort((a,b) => a.tag_name.localeCompare(b.tag_name));
+                let data = await response.json();
+                data.sort((a,b) => a.tag_name.localeCompare(b.tag_name));
+
+                //Delar taggar i två arrayer
+                const halfArr = Math.ceil(data.length / 2);
+                const firstHalf = data.splice(0, halfArr);
+                const secondHalf = data;
+
+                firstTags.value = firstHalf;
+                secondTags.value = secondHalf;
             }
 
         } catch(error) {
