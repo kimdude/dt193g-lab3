@@ -6,7 +6,7 @@
         <span class="arrowSpan span2" :style="{transform: `rotate(${spanRotateTwo})`}"></span>
     </button>
     <section>
-        <h2>Drama serier</h2>
+        <h2>Dramaserier</h2>
         <DramaItem v-for="drama in dramas" :key="drama.drama_id" :drama="drama" @delete-drama="deleteDrama"/>
     </section>
 </template>

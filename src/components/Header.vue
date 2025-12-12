@@ -15,7 +15,7 @@
             <!-- Huvud meny -->
             <ul v-if="displayNav">
                 <li><RouterLink to="/">Startsida</RouterLink></li>
-                <li><RouterLink to="/drama">Drama serier</RouterLink></li>
+                <li><RouterLink to="/drama">Dramaserier</RouterLink></li>
                 <li><RouterLink to="/about">Om labben</RouterLink></li>
             </ul>
         </nav>

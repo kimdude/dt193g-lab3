@@ -6,7 +6,7 @@
     <section>
         <h2>Dramaserier: <strong>mer specifikt - K-dramas</strong></h2>
         <div id="container1">
-            <div>
+            <div id="textContainer">
                 <p><strong>
                     Flera år tillbaka startade en koreansk boom, något som kom att kallas <em>Hallyu</em> och betyder <em>koreanska vågen</em>. Den koreanska vågen innebar
                     en enorm global spridning av koreansk popkultur. Både koreansk film, musik och mode blev populärt världen över.
@@ -18,7 +18,7 @@
                 </p>
                 <p>
                     K-dramas kommer i alla genrer och det finns alltid något att titta på, oavsett vilket humör man är på. Ja, många har bisarra plottar och vissa kretsar runt 
-                    skrikigt familjedrama som en bollywood film. Fast för mig var det just de bisarra plottarna höll kvar mig, som <strong>The School Nurses</strong> Files och <strong>Mr Queen</strong>. 
+                    skrikigt familjedrama som en bollywood film. Fast för mig var det just de bisarra plottarna höll kvar mig, som <strong>The School Nurses Files</strong> och <strong>Mr Queen</strong>. 
                     Det finns många kreativa k-dramas med unika plottar. Många håller dessutom spänningen igång på ett annat sätt än serier från västvärlden, såsom <strong>Hellbound</strong>
                     eller <strong>The Glory</strong>. Också kärlekshistorierna berättas på ett annat sätt - för det mest helt utan att paret ens pussas! Ändå "shippar" man de mer än i 
                     amerikanska serier, där de ibland visar lite väl mycket.
@@ -31,7 +31,7 @@
                     bra, eftersom det inte finns något folk är mer intresserade av än tragiska historier.
                 </p>
                 <p>
-                    Jamen, bort från mörka sidan igen och tillbaka till poängen. K-dramas finns och de är bra. Ger man de en chans lovar jag att det finns något för alla. 
+                    Jamen, bort från mörka sidan igen och tillbaka till poängen. K-dramas finns och dem är bra. Ger man de en chans lovar jag att det finns något för alla. 
                 </p>
             </div>
             <!-- Faktaruta -->
@@ -60,6 +60,9 @@
                         <small>Exempel: Stranger</small>
                     </li>
                 </ul>
+                <div id="readBtn">
+                    <button @click="expandFact">{{ readBtn }}</button>
+                </div>
             </div>
         </div>
     </section>
@@ -69,6 +72,20 @@
     import { ref } from 'vue';
 
     const factHeight = ref("500px");
+    const readBtn = ref("Läs mer");
+    const expanded = ref(false);
+
+    function expandFact() {
+        if(expanded.value === false) {
+            expanded.value = true;
+            factHeight.value = "fit-content";
+            readBtn.value = "Läs mindre";
+        } else {
+            expanded.value = false;
+            factHeight.value = "500px";
+            readBtn.value = "Läs mer";
+        }
+    }
 </script>
 
 <style scoped>
@@ -90,8 +107,13 @@
         justify-content: space-around;
     }
 
+    #textContainer {
+        max-width: 50vw;
+    }
+
     #fact {
-        padding: 20px 2vw;
+        position: relative;
+        padding: 20px 2vw 50px 2vw;
         max-width: 20vw;
         border-radius: 15px;
         border: solid 3px #e2a93f;
@@ -109,6 +131,39 @@
 
     .intro {
         color:#E47DAB;
+    }
+
+    #readBtn {
+        position: absolute;
+        display: flex;
+        bottom: 0;
+        left: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 100%;
+        justify-content: center;
+        background-color: rgba(226, 169, 63, 0.8);
+    }
+
+    button {
+        background-color: #ECE4D4;
+        border: none;
+        border-radius: 10px;
+        box-shadow: inset 0px -2px 0px #E47DAB;
+        font-size: 1rem;
+    }
+
+    /* Skärmar under 950px */
+    @media screen and (max-width: 950px) {
+        h2 { margin-left: 0; text-align: center; }
+        #container1 { flex-direction: column; align-items: center; }
+        #fact { margin-top: 20px; max-width: 50vw; }
+    }
+
+    /* Skärmar under 800px */
+    @media screen and (max-width: 950px) {
+        #textContainer { max-width: 80vw;}
+        #fact { max-width: 70vw; }
     }
 
 </style>
