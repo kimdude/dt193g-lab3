@@ -189,7 +189,8 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        justify-self: center;
+        margin-left: auto;
+        margin-right: auto;
         width: 50vw;
     }
 
