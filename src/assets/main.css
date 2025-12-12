@@ -16,6 +16,10 @@ h1 {
   color: #ECE4D4;
 }
 
+p {
+  max-width: 60ch;
+}
+
 button {
   cursor: pointer;
   padding: 5px 10px;
