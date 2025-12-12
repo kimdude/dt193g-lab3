@@ -4,7 +4,7 @@
             <h2>Om labben</h2>
             <p>
                 Det har gått bra att arbeta med Vue.js. Ramverket påminner mycket om Angular som jag arbetat i några gånger tidigare. Det som skiljde sig fanns video instruktioner
-                för i läsanvisningar, vilket underlättade mycket. Allt rullade på utan problem.
+                för i läsanvisningar, vilket underlättade mycket. Också installationen gick smärtfritt tack vare videorna. Allt rullade på utan problem.
             </p>
             <p>
                 En sak som kändes lite svårare var emits, även om Angular också har en version av dessa. Sedan kändes placering av bilder förvirrande, att både public och assets
